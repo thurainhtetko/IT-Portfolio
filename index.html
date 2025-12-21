@@ -1,1346 +1,977 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <title>GED Teacher & Web Developer</title>
+    <title>Web Developer Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
-        :root {
-            --bg: #e5e7eb;
-            --surface: #ffffff;
-            --text-main: #020617;
-            --text-muted: #4b5563;
-            --border-soft: #d1d5db;
-            --accent: #0f766e;
-            --accent-soft: #e0f2f1;
-        }
+      :root {
+        --bg: #e5e7eb;
+        --surface: #ffffff;
+        --text-main: #020617;
+        --text-muted: #4b5563;
+        --border-soft: #d1d5db;
+        --accent: #0f766e;
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        --s1: 0.35rem;
+        --s2: 0.55rem;
+        --s3: 0.8rem;
+        --s4: 1rem;
+        --s5: 1.25rem;
+        --s6: 1.5rem;
+        --s7: 1.9rem;
 
-        html,
-        body {
-            scroll-behavior: smooth;
-        }
+        --header-h: 64px;
+      }
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                sans-serif;
-            background: radial-gradient(circle at top, #f9fafb 0, var(--bg) 55%);
-            color: var(--text-main);
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        main {
-            padding-bottom: 3.2rem;
-            /* space for bottom nav on mobile */
-        }
+      html {
+        font-size: 125%;
+        scroll-behavior: smooth;
+        height: 100%;
+        scroll-snap-type: y mandatory;
+        scroll-padding-top: calc(var(--header-h) + 12px);
+      }
 
-        section {
-            padding: 2.5rem 1.25rem 2.5rem;
-            display: flex;
-            align-items: center;
-        }
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #f9fafb 0, var(--bg) 55%);
+        color: var(--text-main);
+        overflow-x: hidden;
+      }
 
-        /* HERO slightly taller */
-        #hero {
-            min-height: calc(100vh - 120px);
-        }
+      /* Fixed header (always top) */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(248, 250, 252, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-soft);
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      }
 
-        .section-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            width: 100%;
-            background-color: var(--surface);
-            border: 1px solid var(--border-soft);
-            border-radius: 1.5rem;
-            padding: 1.75rem 1.5rem;
-            display: grid;
-            gap: 1.5rem;
-            box-shadow:
-                0 18px 40px rgba(15, 23, 42, 0.14),
-                0 0 0 1px rgba(15, 23, 42, 0.02);
-        }
+      .header-inner {
+        max-width: 1060px;
+        margin: 0 auto;
+        height: var(--header-h);
+        padding: 0 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--s3);
+      }
 
-        @media (min-width: 768px) {
-            .section-inner {
-                padding: 2rem;
-                gap: 2rem;
-            }
-        }
+      main {
+        padding-top: calc(var(--header-h) + 12px);
+        padding-bottom: 3.2rem;
+      }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(248, 250, 252, 0.96);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-soft);
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-        }
+      .logo-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        border: 1px solid #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-main);
+        background: radial-gradient(circle at 30% 0, #e5e7eb, #f9fafb);
+        flex: 0 0 auto;
+      }
 
-        .header-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0.7rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
+      .logo-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
 
-        .logo-mark {
-            width: 30px;
-            height: 30px;
-            border-radius: 999px;
-            border: 1px solid #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-main);
-            background: radial-gradient(circle at 30% 0, #e5e7eb, #f9fafb);
-        }
+      nav {
+        display: none;
+        gap: 1.5rem;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
 
-        .logo-text {
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
+      nav a {
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        padding-bottom: 2px;
+        transition: color 0.2s;
+      }
 
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background-color: var(--accent);
+        transition: width 0.22s ease;
+      }
+
+      nav a:hover {
+        color: var(--text-main);
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      @media (min-width: 640px) {
         nav {
-            display: none;
-            gap: 1.5rem;
-            font-size: 0.78rem;
-            color: var(--text-muted);
+          display: flex;
         }
+      }
 
-        nav a {
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            padding-bottom: 2px;
+      h1,
+      h2 {
+        font-weight: 650;
+      }
+
+      /* One section per screen */
+      section {
+        min-height: calc(100vh - var(--header-h) - 12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        padding: var(--s5) var(--s4);
+        overflow: hidden;
+      }
+
+      .section-inner {
+        max-width: 960px;
+        margin: 0 auto;
+        width: 100%;
+        background-color: var(--surface);
+        border: 1px solid var(--border-soft);
+        border-radius: 1.5rem;
+        padding: var(--s6);
+        display: grid;
+        gap: var(--s5);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(15, 23, 42, 0.02);
+
+        opacity: 0;
+        transform: translateY(34px) scale(0.992);
+        filter: blur(6px);
+        transition: opacity 950ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 950ms cubic-bezier(0.16, 1, 0.3, 1),
+          filter 950ms cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform, filter;
+      }
+
+      section.is-visible .section-inner {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+
+      @media (min-width: 768px) {
+        .section-inner {
+          padding: var(--s7);
+          gap: var(--s6);
         }
+      }
 
-        nav a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            border-radius: 999px;
-            background-color: var(--accent);
-            transition: width 0.22s ease;
+      @media (max-width: 480px) {
+        section {
+          padding: var(--s5) var(--s3);
         }
-
-        nav a:hover {
-            color: var(--text-main);
+        .section-inner {
+          padding: var(--s5);
+          gap: var(--s5);
         }
+      }
 
-        nav a:hover::after {
-            width: 100%;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
         }
-
-        @media (min-width: 640px) {
-            nav {
-                display: flex;
-            }
+        .section-inner {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+          transition: none !important;
         }
+      }
 
-        h1,
-        h2 {
-            font-weight: 650;
-        }
+      /* HERO */
+      .hero-title {
+        font-size: 1.75rem;
+        line-height: 1.15;
+        margin-top: var(--s2);
+        margin-bottom: var(--s2);
+      }
 
-        /* HERO */
-        .hero-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .hero-grid {
-                grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-            }
-        }
-
+      @media (min-width: 640px) {
         .hero-title {
-            font-size: 1.9rem;
-            line-height: 1.15;
+          font-size: 2.1rem;
         }
+      }
 
-        @media (min-width: 640px) {
-            .hero-title {
-                font-size: 2.3rem;
-            }
+      @media (min-width: 1024px) {
+        .hero-title {
+          font-size: 2.4rem;
         }
+      }
 
-        @media (min-width: 1024px) {
-            .hero-title {
-                font-size: 2.7rem;
-            }
-        }
+      .hero-title span {
+        border-bottom: 3px solid var(--accent);
+      }
 
-        .hero-title span.accent-underline {
-            border-bottom: 3px solid var(--accent);
-        }
+      .hero-subtext {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        max-width: 38rem;
+        margin-bottom: var(--s4);
+        line-height: 1.55;
+      }
 
-        .hero-title span.accent-block {
-            padding: 0 0.2rem;
-            border-radius: 0.2rem;
-        }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s3);
+      }
 
-        .hero-subtext {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 26rem;
-        }
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+        border-radius: 999px;
+        border: 1px solid #020617;
+        background-color: #020617;
+        color: #f9fafb;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.85rem;
-        }
+      .btn-primary:active {
+        transform: scale(0.96);
+      }
 
-        .btn-primary {
-            position: relative;
-            overflow: hidden;
-            border-radius: 999px;
-            border: 1px solid #020617;
-            background-color: #020617;
-            color: #f9fafb;
-            padding: 0.6rem 1.5rem;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            cursor: pointer;
-        }
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          rgba(148, 163, 184, 0.1),
+          rgba(15, 118, 110, 0.4),
+          rgba(148, 163, 184, 0.1)
+        );
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+        z-index: 0;
+      }
 
-        .btn-primary::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg,
-                    rgba(148, 163, 184, 0.1),
-                    rgba(15, 118, 110, 0.4),
-                    rgba(148, 163, 184, 0.1));
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-            z-index: 0;
-        }
+      .btn-primary span {
+        position: relative;
+        z-index: 1;
+      }
 
-        .btn-primary span {
-            position: relative;
-            z-index: 1;
-        }
+      .btn-primary:hover::before {
+        transform: translateX(0);
+      }
 
-        .btn-primary:hover::before {
-            transform: translateX(0);
-        }
+      .btn-ghost {
+        border-radius: 999px;
+        border: 1px solid #9ca3af;
+        background-color: #f9fafb;
+        color: var(--text-main);
+        padding: 0.6rem 1.5rem;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
 
-        .btn-ghost {
-            position: relative;
-            overflow: hidden;
-            border-radius: 999px;
-            border: 1px solid #9ca3af;
-            background-color: #f9fafb;
-            color: var(--text-main);
-            padding: 0.6rem 1.5rem;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            cursor: pointer;
-        }
+      .btn-ghost:hover {
+        background-color: #e5e7eb;
+        border-color: #6b7280;
+      }
 
-        .btn-ghost.small {
-            padding: 0.45rem 1rem;
-            font-size: 0.7rem;
-        }
+      /* SECTION TITLES */
+      .section-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--s3);
+        margin-bottom: var(--s4);
+      }
 
-        .btn-ghost:hover {
-            background-color: #e5e7eb;
-            border-color: #6b7280;
-        }
+      .section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--text-main);
+      }
 
-        .hero-modes-label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-        }
+      .section-subtitle {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+      }
 
-        .mode-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
+      /* PROJECTS — wider than other sections */
+      #projects .section-inner {
+        max-width: 1120px;
+      }
 
-        .mode-button {
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background-color: #ffffff;
-            color: var(--text-main);
-            padding: 0.35rem 1rem;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            cursor: pointer;
-            transition:
-                background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
-        }
+      .dev-grid {
+        display: grid;
+        gap: var(--s4);
+      }
 
-        .mode-button.active {
-            background-color: #020617;
-            color: #f9fafb;
-            border-color: #020617;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
-        }
-
-        .mode-card {
-            border-radius: 1rem;
-            border: 1px solid var(--border-soft);
-            background-color: #f9fafb;
-            padding: 1rem;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .mode-card-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.6rem;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--text-muted);
-        }
-
-        .mode-card-title span:last-child {
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            padding: 0.12rem 0.6rem;
-            background-color: #ffffff;
-        }
-
-        /* SECTION TITLES */
-        .section-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .section-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-main);
-        }
-
-        .section-subtitle {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
-
-        /* WORK (gallery/toggle) */
-        .work-toggle {
-            display: inline-flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .work-toggle-btn {
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background-color: #ffffff;
-            color: var(--text-main);
-            padding: 0.35rem 0.9rem;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            cursor: pointer;
-            transition:
-                background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-        .work-toggle-btn.active {
-            background-color: #020617;
-            color: #f9fafb;
-            border-color: #020617;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
-        }
-
-
-        /* CONTACT TOGGLE (reuses work toggle style) */
-        .contact-toggle {
-            display: inline-flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.75rem 0 0.25rem;
-        }
-
-        /* share styling with work-toggle-btn */
-        .work-toggle-btn,
-        .contact-toggle-btn {
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background-color: #ffffff;
-            color: var(--text-main);
-            padding: 0.35rem 0.9rem;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            cursor: pointer;
-            transition:
-                background-color 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-        .work-toggle-btn.active,
-        .contact-toggle-btn.active {
-            background-color: #020617;
-            color: #f9fafb;
-            border-color: #020617;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
-        }
-
-        .contact-card {
-            margin-top: 0.7rem;
-            border-radius: 1.1rem;
-            border: 1px solid var(--border-soft);
-            background-color: #f9fafb;
-            padding: 0.9rem 1rem;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .contact-card h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-card p {
-            margin-bottom: 0.4rem;
-        }
-
-        .contact-card a {
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-
-
-        .gallery-grid {
-            display: grid;
-            gap: 0.7rem;
-        }
-
-        @media (min-width: 640px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 960px) {
-            .gallery-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        .image-card {
-            border-radius: 1.1rem;
-            border: 1px solid var(--border-soft);
-            background-color: #ffffff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition:
-                transform 0.18s ease,
-                box-shadow 0.18s ease,
-                border-color 0.18s ease;
-        }
-
-        .image-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
-            border-color: #020617;
-        }
-
-        .image-thumb {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            background-color: #e5e7eb;
-            display: block;
-        }
-
-        .image-caption {
-            padding: 0.45rem 0.7rem 0.6rem;
-            font-size: 0.74rem;
-            color: var(--text-muted);
-        }
-
+      @media (min-width: 768px) {
         .dev-grid {
-            display: grid;
-            gap: 0.9rem;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
+      }
 
-        @media (min-width: 768px) {
-            .dev-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
+      .project-card {
+        border-radius: 1.25rem;
+        border: 1px solid var(--border-soft);
+        background-color: #ffffff;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      }
 
-        .hidden-gallery {
-            display: none;
-        }
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+        border-color: #020617;
+      }
 
-        .hidden-ged {
-            display: none;
-        }
+      /* Consistent project "logo" area using Iconify + Ion icons */
+      .project-thumb {
+        position: relative;
+        height: 160px;
+        border-bottom: 1px solid #e5e7eb;
+        background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
 
-        .see-more-wrapper {
-            margin-top: 0.7rem;
-        }
+      .project-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+        border: 1px solid rgba(2, 6, 23, 0.12);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(10px);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+      }
 
-        .see-more-wrapper.hidden {
-            display: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 0 !important;
-        }
+      .project-icon iconify-icon {
+        font-size: 34px;
+        color: #0f172a;
+      }
 
+      /* View button appears in the middle on hover */
+      .thumb-view {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.98);
+        opacity: 0;
+        pointer-events: none;
 
-        /* Dev project cards */
-        .project-card {
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            background-color: #ffffff;
-            padding: 0.95rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-            transition:
-                transform 0.18s ease,
-                box-shadow 0.18s ease,
-                border-color 0.18s ease,
-                background-color 0.18s ease;
-        }
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(2, 6, 23, 0.32);
+        color: #f9fafb;
+        border-radius: 999px;
+        padding: 0.55rem 1.05rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
 
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
-            border-color: #020617;
-            background-color: #f9fafb;
-        }
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
 
-        .project-thumb {
-            height: 90px;
-            border-radius: 0.9rem;
-            border: 1px solid #cbd5e1;
-            background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            color: #1f2937;
-            font-weight: 500;
-            overflow: hidden;
-        }
+      .project-card:hover .thumb-view {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        pointer-events: auto;
+      }
 
-        .project-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+      /* slight dark overlay on hover so button is readable */
+      .project-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.18);
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
 
-        .project-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
+      .project-card:hover .project-thumb::after {
+        opacity: 1;
+      }
 
-        .project-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
+      .project-body {
+        padding: var(--s4);
+        display: grid;
+        gap: var(--s3);
+      }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-            font-size: 0.68rem;
-            margin-top: 0.25rem;
-        }
+      .project-title {
+        font-size: 0.95rem;
+        font-weight: 650;
+        color: var(--text-main);
+      }
 
-        .tag {
-            border-radius: 999px;
-            background-color: #e5e7eb;
-            padding: 0.12rem 0.55rem;
-            color: #111827;
-        }
+      .project-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.55;
+      }
 
-        .project-actions {
-            margin-top: auto;
-            display: flex;
-            gap: 0.45rem;
-        }
+      /* Languages row with consistent Ionicons logos */
+      .lang-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.1rem;
+      }
 
-        .btn-small-primary {
-            flex: 1;
-            border-radius: 999px;
-            border: 1px solid #020617;
-            background-color: #020617;
-            color: #f9fafb;
-            padding: 0.4rem 0.75rem;
-            font-size: 0.72rem;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+      .lang-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border-radius: 999px;
+        background: #e5e7eb;
+        color: #111827;
+        padding: 0.14rem 0.6rem;
+        font-size: 0.7rem;
+      }
 
-        .btn-small-primary::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg,
-                    rgba(148, 163, 184, 0.14),
-                    rgba(15, 118, 110, 0.4),
-                    rgba(148, 163, 184, 0.14));
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 0;
-        }
+      .lang-pill iconify-icon {
+        font-size: 16px;
+        color: #111827;
+      }
 
-        .btn-small-primary:hover::before {
-            transform: translateX(0);
-        }
+      /* keep your old tag style if you want */
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        font-size: 0.7rem;
+      }
 
-        .btn-small-primary span {
-            position: relative;
-            z-index: 1;
-        }
+      .tag {
+        border-radius: 999px;
+        background-color: #e5e7eb;
+        padding: 0.12rem 0.55rem;
+        color: #111827;
+      }
 
-        .btn-small-ghost {
-            flex: 1;
-            border-radius: 999px;
-            border: 1px solid #cbd5e1;
-            background-color: #ffffff;
-            color: var(--text-main);
-            padding: 0.4rem 0.75rem;
-            font-size: 0.72rem;
-            cursor: pointer;
-        }
+      /* SKILLS */
+      .single-card {
+        border-radius: 1.25rem;
+        border: 1px solid var(--border-soft);
+        padding: var(--s5);
+        background-color: #f9fafb;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        display: grid;
+        gap: var(--s3);
+      }
 
-        .btn-small-ghost:hover {
-            background-color: #e5e7eb;
-        }
+      .single-card h3 {
+        font-size: 0.92rem;
+        color: var(--text-main);
+      }
 
-        /* WHAT I DO */
-        .dual-grid {
-            display: grid;
-            gap: 1rem;
-        }
+      .single-card ul {
+        list-style: none;
+        display: grid;
+        gap: var(--s2);
+      }
 
-        @media (min-width: 768px) {
-            .dual-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
+      /* CONTACT */
+      .contact-grid {
+        display: grid;
+        gap: var(--s4);
+      }
 
-        .dual-card {
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1rem;
-            background-color: #f9fafb;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .dual-card h3 {
-            font-size: 0.92rem;
-            margin-bottom: 0.45rem;
-            color: var(--text-main);
-        }
-
-        .dual-card ul {
-            list-style: none;
-        }
-
-        .dual-card li {
-            margin-bottom: 0.28rem;
-        }
-
-        /* CONTACT */
+      @media (min-width: 768px) {
         .contact-grid {
-            display: grid;
-            gap: 1rem;
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
         }
+      }
 
-        @media (min-width: 768px) {
-            .contact-grid {
-                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-            }
-        }
+      .contact-text {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: var(--s4);
+        line-height: 1.6;
+      }
 
-        .contact-text {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
+      .contact-toggle {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: var(--s2);
+        margin-top: var(--s1);
+      }
 
-        .contact-text a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 3px;
-        }
+      .contact-toggle-btn {
+        border-radius: 999px;
+        border: 1px solid var(--border-soft);
+        background-color: #ffffff;
+        color: var(--text-main);
+        padding: 0.35rem 0.9rem;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
 
-        .contact-form {
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1rem;
-            background-color: #f9fafb;
-            font-size: 0.8rem;
-        }
+      .contact-toggle-btn.active {
+        background-color: #020617;
+        color: #f9fafb;
+        border-color: #020617;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+      }
 
-        .field-group {
-            margin-bottom: 0.7rem;
-        }
+      .contact-card {
+        border-radius: 1.1rem;
+        border: 1px solid var(--border-soft);
+        background-color: #f9fafb;
+        padding: var(--s4);
+        color: var(--text-muted);
+        display: grid;
+        gap: var(--s2);
+        transition: opacity 200ms ease;
+      }
 
-        .field-label {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
+      .contact-card h3 {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--text-main);
+      }
 
-        .field-input,
-        .field-select,
-        .field-textarea {
-            width: 100%;
-            border-radius: 0.7rem;
-            border: 1px solid var(--border-soft);
-            padding: 0.55rem 0.7rem;
-            font-size: 0.82rem;
-            color: var(--text-main);
-            background-color: #f9fafb;
-            outline: none;
-            transition:
-                border-color 0.15s ease,
-                box-shadow 0.15s ease,
-                background-color 0.15s ease;
-        }
+      .contact-card a {
+        font-size: 0.82rem;
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        width: fit-content;
+      }
 
-        .field-input:focus,
-        .field-select:focus,
-        .field-textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.35);
-            background-color: #ffffff;
-        }
+      footer {
+        font-size: 0.74rem;
+        color: var(--text-muted);
+        padding: 0.6rem 1.25rem 0.85rem;
+        max-width: 960px;
+        margin: 0 auto 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--s3);
+      }
 
-        .field-textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
+      footer a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
 
-        .btn-form {
-            width: 100%;
-            border-radius: 999px;
-            border: 1px solid #020617;
-            background-color: #020617;
-            color: #f9fafb;
-            padding: 0.55rem 0.75rem;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+      footer a:hover {
+        color: var(--text-main);
+      }
 
-        .btn-form::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg,
-                    rgba(148, 163, 184, 0.12),
-                    rgba(15, 118, 110, 0.4),
-                    rgba(148, 163, 184, 0.12));
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-            z-index: 0;
-        }
+      footer p {
+        cursor: pointer;
+        user-select: none;
+      }
 
-        .btn-form:hover::before {
-            transform: translateX(0);
-        }
+      /* BOTTOM NAV (mobile) */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #020617;
+        border-top: 1px solid #111827;
+        color: #e5e7eb;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.7rem;
+        z-index: 20;
+      }
 
-        .btn-form span {
-            position: relative;
-            z-index: 1;
-        }
+      .bottom-nav button {
+        background: none;
+        border: none;
+        color: inherit;
+        font: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.15rem;
+        cursor: pointer;
+        opacity: 0.9;
+      }
 
-        .form-note {
-            margin-top: 0.45rem;
-            font-size: 0.66rem;
-            color: var(--text-muted);
-        }
+      .bottom-nav button span.label {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.65rem;
+      }
 
-        /* FOOTER (simple, not sticky) */
-        footer {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            padding: 0.6rem 1.25rem 0.85rem;
-            max-width: 960px;
-            margin: 0 auto 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        footer a {
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: var(--text-main);
-        }
-
-        /* BOTTOM NAV (mobile) */
+      @media (min-width: 640px) {
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #020617;
-            border-top: 1px solid #111827;
-            color: #e5e7eb;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0.35rem 0.6rem;
-            font-size: 0.7rem;
-            z-index: 20;
+          display: none;
         }
-
-        .bottom-nav button {
-            background: none;
-            border: none;
-            color: inherit;
-            font: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.15rem;
-            cursor: pointer;
-            opacity: 0.9;
-        }
-
-        .bottom-nav button span.label {
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            font-size: 0.65rem;
-        }
-
-        .bottom-nav button:focus-visible {
-            outline: 2px solid #e5e7eb;
-            outline-offset: 2px;
-        }
-
-        @media (min-width: 640px) {
-            .bottom-nav {
-                display: none;
-            }
-        }
+      }
     </style>
 
-</head>
+    <!-- Iconify web component (lets you use <iconify-icon icon="ion:...">) -->
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="header-inner">
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-                <div class="logo-mark">T</div>
-                <div class="logo-text">Thurain Htet Ko</div>
-            </div>
-            <nav>
-                <a href="#work">Work</a>
-                <a href="#what-i-do">What I do</a>
-                <a href="#contact">Contact</a>
-            </nav>
+      <div class="header-inner">
+        <div style="display: flex; align-items: center; gap: 0.5rem">
+          <div class="logo-mark">T</div>
+          <div class="logo-text">Thurain Htet Ko</div>
         </div>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
     </header>
 
     <main>
-        <!-- HERO -->
-        <section id="hero">
-            <div class="section-inner hero-grid">
-                <div>
-                    <h1 class="hero-title" style="margin-top:0.9rem;">
-                        Hello!
-                        <span class="accent-block">GED Teacher & Web Developer</span>
-                    </h1>
-
-                    <p class="hero-subtext" style="margin-top:0.7rem;">
-                        Based: Myanmar, Mandalay
-                    </p>
-
-                    <div class="hero-actions">
-                        <button class="btn-primary" onclick="scrollToSection('contact')">
-                            <span>Work with me</span>
-                        </button>
-                        <button class="btn-ghost" onclick="scrollToSection('work')">
-                            See demo work →
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="hero-modes-label">Modes</div>
-                    <div class="mode-buttons">
-                        <button class="mode-button active" data-mode="teacher">
-                            Teaching
-                        </button>
-                        <button class="mode-button" data-mode="developer">
-                            Development
-                        </button>
-                    </div>
-                    <div class="mode-card" id="mode-card">
-                        <div class="mode-card-title">
-                            <span id="mode-title">GED Teaching</span>
-                            <span>
-                                Skills
-                            </span>
-                        </div>
-                        <p id="mode-text">
-                            Math &amp; Social Studies
-                        </p>
-                    </div>
-                </div>
+      <!-- HERO -->
+      <section id="hero">
+        <div class="section-inner">
+          <div>
+            <h1 class="hero-title">Hello! I'm a <span>Web Developer</span></h1>
+            <p class="hero-subtext">
+              Based in Mandalay, Myanmar. I build responsive websites and clean UI with modern tools.
+            </p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="scrollToSection('projects')" type="button">
+                <span>See projects</span>
+              </button>
+              <button class="btn-ghost" onclick="scrollToSection('contact')" type="button">Hire me →</button>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- WORK -->
-        <section id="work">
-            <div class="section-inner">
-                <div class="section-title-row">
-                    <h2 class="section-title">Work</h2>
-                    <div class="section-subtitle">Tap between GED &amp; Development</div>
+      <!-- PROJECTS (single section, wider) -->
+      <section id="projects">
+        <div class="section-inner">
+          <div class="section-title-row">
+            <h2 class="section-title">Projects</h2>
+            <div class="section-subtitle">Selected development work</div>
+          </div>
+
+          <div class="dev-grid">
+            <!-- Project 1 -->
+            <article class="project-card">
+              <div class="project-thumb">
+                <div class="project-icon" aria-hidden="true">
+                  <iconify-icon icon="ion:cafe-outline"></iconify-icon>
                 </div>
 
-                <div class="work-toggle">
-                    <button class="work-toggle-btn active" data-target="ged" >GED</button>
-                    <button class="work-toggle-btn" data-target="dev">Development</button>
+                <button class="thumb-view" type="button">
+                  View
+                </button>
+              </div>
+
+              <div class="project-body">
+                <div class="project-title">Bean Boutique</div>
+                <div class="project-desc">Product review style layout for a coffee brand.</div>
+
+                <div class="lang-row" aria-label="Used languages">
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-html5"></iconify-icon><span>HTML</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-css3"></iconify-icon><span>CSS</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-javascript"></iconify-icon><span>JS</span></span>
                 </div>
 
-                <!-- GED GALLERY (first 3 visible, rest hidden until "see more") -->
-                <div id="ged-gallery" class="gallery-grid">
-                    <figure class="image-card">
-                        <img class="image-thumb" src="ged-1.jpg" alt="GED math worksheet mockup" />
-                        <figcaption class="image-caption">
-                            GED Math practice – ratios &amp; percentages.
-                        </figcaption>
-                    </figure>
+                <div class="project-tags">
+                  <span class="tag">Responsive</span>
+                  <span class="tag">Clean UI</span>
+                </div>
+              </div>
+            </article>
 
-                    <figure class="image-card">
-                        <img class="image-thumb" src="ged-2.jpg" alt="GED social studies slides" />
-                        <figcaption class="image-caption">
-                            Social Studies notes – timelines and maps.
-                        </figcaption>
-                    </figure>
-
-                    <figure class="image-card">
-                        <img class="image-thumb" src="ged-3.jpg" alt="GED reading passage layout" />
-                        <figcaption class="image-caption">
-                            Reading practice – passage &amp; multiple choice.
-                        </figcaption>
-                    </figure>
-
-                    <!-- extra images (hidden by default) -->
-                    <figure class="image-card hidden-ged">
-                        <img class="image-thumb" src="ged-4.jpg" alt="GED exam-style question cards" />
-                        <figcaption class="image-caption">
-                            Exam-style questions with clear steps.
-                        </figcaption>
-                    </figure>
-
-                    <figure class="image-card hidden-ged">
-                        <img class="image-thumb" src="ged-5.jpg" alt="GED weekly study schedule" />
-                        <figcaption class="image-caption">
-                            Weekly study schedule – subjects &amp; hours.
-                        </figcaption>
-                    </figure>
-
-                    <figure class="image-card hidden-ged">
-                        <img class="image-thumb" src="ged-6.jpg" alt="GED formula sheet" />
-                        <figcaption class="image-caption">
-                            Formula / reference sheet for quick review.
-                        </figcaption>
-                    </figure>
+            <!-- Project 2 -->
+            <article class="project-card">
+              <div class="project-thumb">
+                <div class="project-icon" aria-hidden="true">
+                  <iconify-icon icon="ion:speedometer-outline"></iconify-icon>
                 </div>
 
-                <div class="see-more-wrapper">
-                    <button id="ged-see-more" class="btn-ghost small">
-                        See more GED images
-                    </button>
+                <button class="thumb-view" type="button">
+                  View
+                </button>
+              </div>
+
+              <div class="project-body">
+                <div class="project-title">Progress Dashboard</div>
+                <div class="project-desc">Simple dashboard to track goals, tasks, and progress.</div>
+
+                <div class="lang-row" aria-label="Used languages">
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-html5"></iconify-icon><span>HTML</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-css3"></iconify-icon><span>CSS</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-javascript"></iconify-icon><span>JS</span></span>
                 </div>
 
-                <!-- DEV PROJECTS (3 project cards) -->
-                <div id="dev-gallery" class="dev-grid hidden-gallery" style="margin-top:0.4rem;">
-                    <article class="project-card">
-                        <div class="project-thumb">
-                            <img src="./images/bean.png" alt="Bean Boutique preview">
-                        </div>
-                        <div>
-                            <div class="project-title">Bean Boutique</div>
-                            <div class="project-desc">
-                                Product review style layout for a coffee brand.
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">Responsive</span>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn-small-primary">
-                                <span>View</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-thumb">
-                            GED Dashboard
-                        </div>
-                        <div>
-                            <div class="project-title">GED Progress Dashboard</div>
-                            <div class="project-desc">
-                                Simple dashboard to track practice tests, scores, and weak areas.
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">Layout</span>
-                                <span class="tag">UI</span>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn-small-primary">
-                                <span>View</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-thumb">
-                            Course Outline
-                        </div>
-                        <div>
-                            <div class="project-title">Course Outline Block</div>
-                            <div class="project-desc">
-                                Block for listing lessons with “Not started / In progress / Done”.
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">Cards</span>
-                                <span class="tag">Lists</span>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn-small-primary">
-                                <span>View</span>
-                            </button>
-
-                        </div>
-                    </article>
+                <div class="project-tags">
+                  <span class="tag">Cards</span>
+                  <span class="tag">Layout</span>
                 </div>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+              <div class="project-thumb">
+                <div class="project-icon" aria-hidden="true">
+                  <iconify-icon icon="ion:layers-outline"></iconify-icon>
+                </div>
+
+                <button class="thumb-view" type="button">
+                  View
+                </button>
+              </div>
+
+              <div class="project-body">
+                <div class="project-title">Course Outline Block</div>
+                <div class="project-desc">Reusable component for listing lessons with status labels.</div>
+
+                <div class="lang-row" aria-label="Used languages">
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-html5"></iconify-icon><span>HTML</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-css3"></iconify-icon><span>CSS</span></span>
+                  <span class="lang-pill"><iconify-icon icon="ion:logo-php"></iconify-icon><span>PHP</span></span>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Components</span>
+                  <span class="tag">UX</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-inner">
+          <div class="section-title-row">
+            <h2 class="section-title">Skills</h2>
+            <div class="section-subtitle">My main tools & strengths</div>
+          </div>
+
+          <article class="single-card">
+            <h3>Web Development</h3>
+            <ul>
+              <li>• Frontend: HTML, CSS, JavaScript</li>
+              <li>• Backend: PHP, Python, C# (basic to intermediate)</li>
+              <li>• Git & GitHub workflow</li>
+              <li>• Responsive UI and clean layout</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-inner">
+          <div class="section-title-row">
+            <h2 class="section-title">Contact</h2>
+            <div class="section-subtitle">Pick how you want to reach me</div>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-text">
+              <p>Want a website, landing page, or web app? Choose a contact method below and reach out.</p>
+
+              <div class="contact-toggle">
+                <button class="contact-toggle-btn active" data-contact="email" type="button">Email</button>
+                <button class="contact-toggle-btn" data-contact="telegram" type="button">Telegram</button>
+                <button class="contact-toggle-btn" data-contact="facebook" type="button">Facebook</button>
+                <button class="contact-toggle-btn" data-contact="github" type="button">GitHub</button>
+              </div>
+
+              <div class="contact-card" id="contact-card">
+                <h3 id="contact-title">Email</h3>
+                <p id="contact-body">For detailed questions or sending files, email works best.</p>
+                <a id="contact-link" href="mailto:thurainhtetko123@gmail.com" target="_blank" rel="noopener noreferrer">
+                  thurainhtetko123@gmail.com
+                </a>
+              </div>
             </div>
-        </section>
-
-        <!-- WHAT I DO -->
-        <section id="what-i-do">
-            <div class="section-inner">
-                <div class="section-title-row">
-                    <h2 class="section-title">What I do</h2>
-                    <div class="section-subtitle">Two roles, same mindset</div>
-                </div>
-
-                <div class="dual-grid">
-                    <article class="dual-card">
-                        <h3>GED Teaching</h3>
-                        <ul>
-                            <li>• Teaching Experience: 2 years</li>
-                            <li>• Passing rate: 100%</li>
-                            <li>• Average Student Score: 170</li>
-                        </ul>
-                    </article>
-
-                    <article class="dual-card">
-                        <h3>Web Development</h3>
-                        <ul>
-                            <li>• Coding Experience: 2 years</li>
-                            <li>• Full Stack Developer</li>
-                            <li>• AI projects</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="section-inner">
-                <div class="section-title-row">
-                    <h2 class="section-title">Contact</h2>
-                    <div class="section-subtitle">Pick how you want to reach me</div>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-text">
-                        <p>
-                            Want GED help, a small site, or both? Choose a contact method below and reach out.
-                        </p>
-
-                        <div class="contact-toggle">
-                            <button class="contact-toggle-btn active" data-contact="email">
-                                Email
-                            </button>
-                            <button class="contact-toggle-btn" data-contact="telegram">
-                                Telegram
-                            </button>
-                            <button class="contact-toggle-btn" data-contact="facebook">
-                                Facebook
-                            </button>
-                            <button class="contact-toggle-btn" data-contact="github">
-                                GitHub
-                            </button>
-                        </div>
-
-                        <div class="contact-card" id="contact-card">
-                            <h3 id="contact-title">Email</h3>
-                            <p id="contact-body">
-                                For detailed questions or sending files, email works best.
-                            </p>
-                            <a id="contact-link" href="mailto:thurainhtetko123@gmail.com" target="_blank"
-                                rel="noopener noreferrer">
-                                thurainhtetko123@gmail.com
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <span>© <span id="year"></span> Thurain Htet Ko</span>
-        <a href="#hero">Back to top ↑</a>
-        <p onclick="sound()">CLICK</p>
-
+      <span>© <span id="year"></span> Thurain Htet Ko</span>
+      <a href="#hero">Back to top ↑</a>
+      <p onclick="sound()">CLICK</p>
     </footer>
 
-    <!-- Bottom nav (mobile only) -->
     <div class="bottom-nav">
-        <button type="button" onclick="scrollToSection('work')">
-            <span>⬛</span>
-            <span class="label">Work</span>
-        </button>
-        <button type="button" onclick="scrollToSection('what-i-do')">
-            <span>📚</span>
-            <span class="label">What I do</span>
-        </button>
-        <button type="button" onclick="scrollToSection('contact')">
-            <span>✉️</span>
-            <span class="label">Contact</span>
-        </button>
+      <button type="button" onclick="scrollToSection('projects')"><span>⬛</span><span class="label">Projects</span></button>
+      <button type="button" onclick="scrollToSection('skills')"><span>🧠</span><span class="label">Skills</span></button>
+      <button type="button" onclick="scrollToSection('contact')"><span>✉️</span><span class="label">Contact</span></button>
     </div>
 
     <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Set year
-        document.getElementById("year").textContent = new Date().getFullYear();
+      function scrollToSection(id) {
+        const section = document.getElementById(id);
+        if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
 
-        function scrollToSection(id) {
-            const section = document.getElementById(id);
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }
+      function sound() {
+        const s = new Audio();
+        s.src = "/images/click1.mp3";
+        s.play().catch(() => {});
+      }
 
-        // Mode toggle: Teaching / Development (hero)
-        const modeButtons = document.querySelectorAll(".mode-button");
-        const modeTitle = document.getElementById("mode-title");
-        const modeText = document.getElementById("mode-text");
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", sound);
+      });
 
-        const modeContent = {
-            teacher: {
-                title: "GED Teaching",
-                text: "Math & Social Studies"
-            },
-            developer: {
-                title: "Web Development",
-                text: "C# | Python | PHP | Git"
-            }
-        };
+      // Contact toggle
+      const contactButtons = document.querySelectorAll(".contact-toggle-btn");
+      const contactTitle = document.getElementById("contact-title");
+      const contactBody = document.getElementById("contact-body");
+      const contactLink = document.getElementById("contact-link");
 
-        modeButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                modeButtons.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
-                const mode = btn.getAttribute("data-mode");
-                modeTitle.textContent = modeContent[mode].title;
-                modeText.textContent = modeContent[mode].text;
-            });
+      const contactData = {
+        email: {
+          title: "Email",
+          body: "For detailed questions, project requests, or sending files, email works best.",
+          label: "thurainhtetko123@gmail.com",
+          href: "mailto:thurainhtetko123@gmail.com",
+        },
+        telegram: {
+          title: "Telegram",
+          body: "Fast questions or quick updates. Send me a message on Telegram.",
+          label: "@thurainhtetko",
+          href: "https://t.me/thurainhtetko",
+        },
+        facebook: {
+          title: "Facebook",
+          body: "You can message me on Facebook or check updates I post there.",
+          label: "facebook.com/thurainhtetko",
+          href: "https://www.facebook.com/thurain.htet.ko.2025/",
+        },
+        github: {
+          title: "GitHub",
+          body: "For my coding work and sample projects, visit my GitHub profile.",
+          label: "@thurainhtetko123",
+          href: "https://github.com/thurainhtetko123",
+        },
+      };
+
+      contactButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          contactButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const key = btn.getAttribute("data-contact");
+          const data = contactData[key];
+          const card = document.getElementById("contact-card");
+
+          card.style.opacity = "0.55";
+          setTimeout(() => {
+            contactTitle.textContent = data.title;
+            contactBody.textContent = data.body;
+            contactLink.textContent = data.label;
+            contactLink.href = data.href;
+            card.style.opacity = "1";
+          }, 140);
         });
+      });
 
-        //sound
+      // One visible section at a time (smooth + no flicker)
+      const sections = Array.from(document.querySelectorAll("main section"));
+      function setActiveSection(sec) {
+        sections.forEach((s) => s.classList.toggle("is-visible", s === sec));
+      }
 
-        function sound() {
-            var sound = new Audio();
-            sound.src = "/images/click1.mp3";
-            sound.play();
-        }
-        const allButtons = document.querySelectorAll("button");
-        allButtons.forEach((btn) =>{
-            btn.addEventListener("click", sound)
-        })
+      function pickBestOnLoad() {
+        const best = sections
+          .map((sec) => {
+            const r = sec.getBoundingClientRect();
+            const centerDist = Math.abs((r.top + r.bottom) / 2 - window.innerHeight / 2);
+            return { sec, centerDist };
+          })
+          .sort((a, b) => a.centerDist - b.centerDist)[0]?.sec;
 
-        // Work section toggle: GED vs Development
-        const workToggleButtons = document.querySelectorAll(".work-toggle-btn");
-        const gedGallery = document.getElementById("ged-gallery");
-        const devGallery = document.getElementById("dev-gallery");
+        setActiveSection(best || sections[0]);
+      }
 
-        const seeMoreWrapper = document.querySelector(".see-more-wrapper");
+      window.addEventListener("load", pickBestOnLoad);
 
-        workToggleButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                workToggleButtons.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) setActiveSection(visible.target);
+        },
+        { threshold: [0.45, 0.55, 0.65, 0.75] }
+      );
 
-                const target = btn.getAttribute("data-target");
+      sections.forEach((sec) => observer.observe(sec));
 
-                if (target === "ged") {
-                    gedGallery.classList.remove("hidden-gallery");
-                    devGallery.classList.add("hidden-gallery");
-
-                    // Show wrapper properly
-                    seeMoreWrapper.classList.remove("hidden");
-
-                } else {
-                    devGallery.classList.remove("hidden-gallery");
-                    gedGallery.classList.add("hidden-gallery");
-
-                    // Hide wrapper AND remove padding
-                    seeMoreWrapper.classList.add("hidden");
-                }
-            });
+      // Optional: hook up the "View" overlay buttons (replace with your links)
+      document.querySelectorAll(".thumb-view").forEach((btn, idx) => {
+        btn.addEventListener("click", () => {
+          // Example behavior (edit it):
+          alert("Open project " + (idx + 1));
         });
-        ;
-
-        // GED "see more" toggle
-        const seeMoreBtn = document.getElementById("ged-see-more");
-        const extraGedImages = document.querySelectorAll(".hidden-ged");
-        let gedExpanded = false;
-
-        seeMoreBtn.addEventListener("click", () => {
-            gedExpanded = !gedExpanded;
-            extraGedImages.forEach(img => {
-                img.style.display = gedExpanded ? "flex" : "none";
-            });
-            seeMoreBtn.textContent = gedExpanded ? "See less GED images" : "See more GED images";
-        });
-
-        // Hide extra GED images initially (in case inline CSS doesn't apply in some browsers)
-        extraGedImages.forEach(img => {
-            img.style.display = "none";
-        });
-
-        function handleDemoForm(event) {
-            event.preventDefault();
-            alert("This is a demo form. Replace this handler with your own submit logic.");
-        }
-
-        const contactButtons = document.querySelectorAll(".contact-toggle-btn");
-        const contactTitle = document.getElementById("contact-title");
-        const contactBody = document.getElementById("contact-body");
-        const contactLink = document.getElementById("contact-link");
-
-        const contactData = {
-            email: {
-                title: "Email",
-                body: "For detailed questions, lesson requests, or sending files, email works best.",
-                label: "thurainhtetko123@gmail.com",
-                href: "mailto:thurainhtetko123@gmail.com"
-            },
-            telegram: {
-                title: "Telegram",
-                body: "Fast questions or quick updates. Send me a message on Telegram.",
-                label: "@thurainhtetko",
-                href: "https://t.me/thurainhtetko"
-            },
-            facebook: {
-                title: "Facebook",
-                body: "You can also message me on Facebook or check any updates I post there.",
-                label: "facebook.com/thurainhtetko",
-                href: "https://www.facebook.com/thurain.htet.ko.2025/"
-            },
-            github: {
-                title: "GitHub",
-                body: "For my coding work and sample projects, visit my GitHub profile.",
-                label: "@thurainhtetko123",
-                href: "https://github.com/thurainhtetko123"
-            }
-        };
-
-        contactButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                contactButtons.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
-                const key = btn.getAttribute("data-contact");
-                const data = contactData[key];
-
-                contactTitle.textContent = data.title;
-                contactBody.textContent = data.body;
-                contactLink.textContent = data.label;
-                contactLink.href = data.href;
-            });
-        });
+      });
     </script>
-</body>
-
+  </body>
 </html>
