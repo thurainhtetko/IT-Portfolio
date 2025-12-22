@@ -12,12 +12,21 @@
 
   <style>
     :root {
+      /* LIGHT THEME (default) */
       --bg: #e5e7eb;
       --surface: #ffffff;
+      --surface-2: rgba(255, 255, 255, 0.78);
+
       --text-main: #020617;
       --text-muted: #4b5563;
+
       --border-soft: #d1d5db;
+      --border-strong: rgba(2, 6, 23, 0.35);
+
       --accent: #0f766e;
+
+      --shadow-1: 0 18px 40px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(15, 23, 42, 0.02);
+      --shadow-2: 0 20px 45px rgba(15, 23, 42, 0.15);
 
       --s1: 0.35rem;
       --s2: 0.55rem;
@@ -30,14 +39,22 @@
       --header-h: 64px;
     }
 
-    /* DARK THEME (toggled by html[data-theme="dark"]) */
+    /* DARK THEME OVERRIDES */
     html[data-theme="dark"] {
       --bg: #060913;
-      --surface: #0b1222;
-      --text-main: #e5e7eb;
-      --text-muted: #a3a9b6;
-      --border-soft: rgba(148, 163, 184, 0.22);
+      --surface: rgba(12, 16, 32, 0.9);
+      --surface-2: rgba(12, 16, 32, 0.6);
+
+      --text-main: #eef2ff;
+      --text-muted: rgba(238, 242, 255, 0.7);
+
+      --border-soft: rgba(148, 163, 184, 0.18);
+      --border-strong: rgba(226, 232, 240, 0.35);
+
       --accent: #2dd4bf;
+
+      --shadow-1: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      --shadow-2: 0 20px 45px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -54,17 +71,18 @@
       scroll-padding-top: calc(var(--header-h) + 12px);
     }
 
+    /* ✅ FIX: remove global “big glow” background */
     body {
       height: 100%;
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #f9fafb 0, var(--bg) 55%);
       color: var(--text-main);
       overflow-x: hidden;
+      background: linear-gradient(180deg, #f9fafb 0%, var(--bg) 70%);
     }
 
     html[data-theme="dark"] body {
-      background: radial-gradient(circle at top, rgba(45, 212, 191, 0.12) 0, var(--bg) 60%);
+      background: linear-gradient(180deg, #050814 0%, var(--bg) 100%);
     }
 
     /* Fixed header */
@@ -81,8 +99,8 @@
     }
 
     html[data-theme="dark"] header {
-      background: rgba(9, 13, 28, 0.72);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      background: rgba(7, 10, 24, 0.72);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
     }
 
     .header-inner {
@@ -111,20 +129,19 @@
       width: 30px;
       height: 30px;
       border-radius: 999px;
-      border: 1px solid rgba(2, 6, 23, 0.65);
+      border: 1px solid var(--border-soft);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
       font-weight: 700;
       color: var(--text-main);
-      background: radial-gradient(circle at 30% 0, #e5e7eb, #f9fafb);
+      background: radial-gradient(circle at 30% 0, rgba(229, 231, 235, 0.9), rgba(249, 250, 251, 0.9));
       flex: 0 0 auto;
     }
 
     html[data-theme="dark"] .logo-mark {
-      border-color: rgba(226, 232, 240, 0.28);
-      background: radial-gradient(circle at 30% 0, rgba(226, 232, 240, 0.1), rgba(226, 232, 240, 0.02));
+      background: radial-gradient(circle at 30% 0, rgba(30, 41, 59, 0.9), rgba(2, 6, 23, 0.35));
     }
 
     .logo-text {
@@ -137,7 +154,7 @@
 
     nav {
       display: none;
-      gap: 1.2rem;
+      gap: 1.25rem;
       font-size: 0.78rem;
       color: var(--text-muted);
       align-items: center;
@@ -177,44 +194,35 @@
       }
     }
 
-    /* Theme toggle button in navbar */
+    /* Theme toggle button (navbar) */
     .theme-toggle {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.65);
+      background: var(--surface-2);
+      backdrop-filter: blur(12px);
       color: var(--text-main);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    html[data-theme="dark"] .theme-toggle {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(148, 163, 184, 0.22);
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
     }
 
     .theme-toggle:hover {
       transform: translateY(-1px);
-      border-color: rgba(2, 6, 23, 0.35);
+      border-color: var(--border-strong);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     html[data-theme="dark"] .theme-toggle:hover {
-      border-color: rgba(226, 232, 240, 0.35);
+      background: rgba(12, 16, 32, 0.85);
     }
 
     .theme-toggle i {
       font-size: 1.05rem;
       line-height: 1;
-    }
-
-    .theme-toggle:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
     }
 
     h1,
@@ -244,9 +252,7 @@
       padding: var(--s6);
       display: grid;
       gap: var(--s5);
-      box-shadow:
-        0 18px 40px rgba(15, 23, 42, 0.14),
-        0 0 0 1px rgba(15, 23, 42, 0.02);
+      box-shadow: var(--shadow-1);
 
       opacity: 0;
       transform: translateY(26px) scale(0.995);
@@ -256,12 +262,6 @@
         transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
         filter 1000ms cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform, filter;
-    }
-
-    html[data-theme="dark"] .section-inner {
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.45),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
     }
 
     section.is-visible .section-inner {
@@ -308,6 +308,37 @@
       }
     }
 
+    /* ✅ Glow ONLY in hero (no weird light in other sections) */
+    #hero {
+      position: relative;
+    }
+
+    #hero .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    #hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -150px;
+      width: 1100px;
+      height: 520px;
+      transform: translateX(-50%);
+      background: radial-gradient(closest-side at 50% 40%,
+          rgba(15, 118, 110, 0.16),
+          transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    html[data-theme="dark"] #hero::before {
+      background: radial-gradient(closest-side at 50% 40%,
+          rgba(45, 212, 191, 0.14),
+          transparent 70%);
+    }
+
     /* HERO */
     .hero-title {
       font-size: 1.75rem;
@@ -351,8 +382,8 @@
       position: relative;
       overflow: hidden;
       border-radius: 999px;
-      border: 1px solid rgba(2, 6, 23, 0.9);
-      background-color: rgba(2, 6, 23, 1);
+      border: 1px solid var(--text-main);
+      background-color: var(--text-main);
       color: #f9fafb;
       padding: 0.6rem 1.5rem;
       font-size: 0.78rem;
@@ -363,8 +394,9 @@
     }
 
     html[data-theme="dark"] .btn-primary {
-      border-color: rgba(226, 232, 240, 0.16);
-      background-color: rgba(226, 232, 240, 0.08);
+      border-color: rgba(238, 242, 255, 0.7);
+      background-color: rgba(238, 242, 255, 0.9);
+      color: #050814;
     }
 
     .btn-primary:active {
@@ -395,8 +427,8 @@
 
     .btn-ghost {
       border-radius: 999px;
-      border: 1px solid rgba(156, 163, 175, 0.95);
-      background-color: rgba(249, 250, 251, 0.9);
+      border: 1px solid var(--border-soft);
+      background-color: transparent;
       color: var(--text-main);
       padding: 0.6rem 1.5rem;
       font-size: 0.78rem;
@@ -406,19 +438,9 @@
       transition: all 0.2s;
     }
 
-    html[data-theme="dark"] .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.35);
-      background-color: rgba(255, 255, 255, 0.04);
-    }
-
     .btn-ghost:hover {
-      background-color: rgba(229, 231, 235, 0.8);
-      border-color: rgba(107, 114, 128, 0.85);
-    }
-
-    html[data-theme="dark"] .btn-ghost:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      border-color: rgba(226, 232, 240, 0.45);
+      background-color: rgba(148, 163, 184, 0.12);
+      border-color: var(--border-strong);
     }
 
     /* Hero social icons */
@@ -434,8 +456,8 @@
       width: 44px;
       height: 44px;
       border-radius: 999px;
-      border: 1px solid rgba(2, 6, 23, 0.12);
-      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-soft);
+      background: var(--surface-2);
       backdrop-filter: blur(10px);
       display: inline-flex;
       align-items: center;
@@ -445,20 +467,14 @@
       transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
     }
 
-    html[data-theme="dark"] .social-btn {
-      border-color: rgba(148, 163, 184, 0.22);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
     .social-btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(2, 6, 23, 0.35);
+      border-color: var(--border-strong);
       background: rgba(255, 255, 255, 0.9);
     }
 
     html[data-theme="dark"] .social-btn:hover {
-      border-color: rgba(226, 232, 240, 0.38);
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(12, 16, 32, 0.85);
     }
 
     .social-btn i {
@@ -512,20 +528,15 @@
 
     .project-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
-      border-color: rgba(2, 6, 23, 0.6);
-    }
-
-    html[data-theme="dark"] .project-card:hover {
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
-      border-color: rgba(226, 232, 240, 0.26);
+      box-shadow: var(--shadow-2);
+      border-color: var(--border-strong);
     }
 
     .project-thumb {
       position: relative;
       height: 165px;
-      background: linear-gradient(135deg, rgba(249, 250, 251, 0.9), rgba(229, 231, 235, 0.9));
-      border-bottom: 1px solid rgba(209, 213, 219, 0.8);
+      background: linear-gradient(135deg, rgba(249, 250, 251, 0.9), rgba(229, 231, 235, 0.8));
+      border-bottom: 1px solid var(--border-soft);
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -533,8 +544,7 @@
     }
 
     html[data-theme="dark"] .project-thumb {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      border-bottom-color: rgba(148, 163, 184, 0.18);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(2, 6, 23, 0.35));
     }
 
     .project-thumb img {
@@ -572,13 +582,6 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       transition: opacity 220ms ease, transform 220ms ease;
-    }
-
-    html[data-theme="dark"] .thumb-view {
-      background: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.22);
-      color: #f8fafc;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
     }
 
     .project-card:hover .thumb-view {
@@ -625,16 +628,16 @@
       gap: 0.35rem;
       border-radius: 999px;
       padding: 0.16rem 0.6rem;
-      border: 1px solid rgba(2, 6, 23, 0.12);
-      background: rgba(249, 250, 251, 0.9);
+      border: 1px solid var(--border-soft);
+      background: rgba(249, 250, 251, 0.75);
       color: var(--text-main);
       font-size: 0.7rem;
       white-space: nowrap;
+      backdrop-filter: blur(10px);
     }
 
     html[data-theme="dark"] .lang-pill {
-      border-color: rgba(148, 163, 184, 0.22);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(12, 16, 32, 0.55);
     }
 
     .lang-pill i {
@@ -647,15 +650,16 @@
       border-radius: 1.25rem;
       border: 1px solid var(--border-soft);
       padding: var(--s5);
-      background-color: rgba(249, 250, 251, 0.92);
+      background-color: rgba(249, 250, 251, 0.6);
       font-size: 0.88rem;
       color: var(--text-muted);
       display: grid;
       gap: var(--s3);
+      backdrop-filter: blur(10px);
     }
 
     html[data-theme="dark"] .single-card {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: rgba(12, 16, 32, 0.55);
     }
 
     .single-card h3 {
@@ -700,7 +704,7 @@
     .contact-toggle-btn {
       border-radius: 999px;
       border: 1px solid var(--border-soft);
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: transparent;
       color: var(--text-main);
       padding: 0.35rem 0.9rem;
       font-size: 0.72rem;
@@ -710,36 +714,33 @@
       transition: all 0.2s ease;
     }
 
-    html[data-theme="dark"] .contact-toggle-btn {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
     .contact-toggle-btn.active {
-      background-color: rgba(2, 6, 23, 1);
-      color: #f9fafb;
-      border-color: rgba(2, 6, 23, 1);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+      background-color: var(--text-main);
+      color: var(--bg);
+      border-color: var(--text-main);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
     }
 
     html[data-theme="dark"] .contact-toggle-btn.active {
-      background-color: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      background-color: rgba(238, 242, 255, 0.9);
+      color: #050814;
+      border-color: rgba(238, 242, 255, 0.85);
     }
 
     .contact-card {
       border-radius: 1.1rem;
       border: 1px solid var(--border-soft);
-      background-color: rgba(249, 250, 251, 0.92);
+      background-color: rgba(249, 250, 251, 0.6);
       padding: var(--s4);
       color: var(--text-muted);
       display: grid;
       gap: var(--s2);
       transition: opacity 200ms ease;
+      backdrop-filter: blur(10px);
     }
 
     html[data-theme="dark"] .contact-card {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: rgba(12, 16, 32, 0.55);
     }
 
     .contact-card h3 {
@@ -789,8 +790,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: rgba(2, 6, 23, 0.98);
-      border-top: 1px solid rgba(17, 24, 39, 0.9);
+      background-color: rgba(2, 6, 23, 0.92);
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
       color: #e5e7eb;
       display: flex;
       justify-content: space-around;
@@ -798,11 +799,7 @@
       padding: 0.35rem 0.6rem;
       font-size: 0.7rem;
       z-index: 20;
-    }
-
-    html[data-theme="dark"] .bottom-nav {
-      background-color: rgba(0, 0, 0, 0.65);
-      border-top-color: rgba(148, 163, 184, 0.18);
+      backdrop-filter: blur(12px);
     }
 
     .bottom-nav button {
@@ -845,9 +842,8 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
 
-        <!-- Dark mode toggle -->
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"
-          title="Toggle theme">
+        <!-- ✅ Dark mode toggle -->
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
           <i class="bi bi-moon-stars" aria-hidden="true"></i>
         </button>
       </nav>
@@ -899,6 +895,7 @@
           <div class="section-subtitle">Selected development work</div>
         </div>
 
+        <!-- JS renders cards here -->
         <div class="dev-grid" id="projects-grid"></div>
       </div>
     </section>
@@ -986,42 +983,36 @@
       btn.addEventListener("click", sound);
     });
 
-    // --- THEME TOGGLE (persist in localStorage) ---
-    const themeToggle = document.getElementById("themeToggle");
-    const root = document.documentElement;
+    // --- DARK MODE TOGGLE ---
+    const THEME_KEY = "theme";
+    const toggleBtn = document.getElementById("theme-toggle");
 
-    function setTheme(theme) {
-      if (theme === "dark") root.setAttribute("data-theme", "dark");
-      else root.removeAttribute("data-theme");
-
-      // Update icon
-      const icon = themeToggle?.querySelector("i");
-      if (icon) {
-        icon.className = (theme === "dark") ? "bi bi-sun" : "bi bi-moon-stars";
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="bi bi-sun" aria-hidden="true"></i>';
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="bi bi-moon-stars" aria-hidden="true"></i>';
       }
-
-      // Save
-      try { localStorage.setItem("theme", theme); } catch (e) { }
     }
 
-    function getPreferredTheme() {
-      try {
-        const saved = localStorage.getItem("theme");
-        if (saved === "dark" || saved === "light") return saved;
-      } catch (e) { }
-      // System preference fallback
-      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+    function getInitialTheme() {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === "dark" || saved === "light") return saved;
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
 
-    // Init theme
-    setTheme(getPreferredTheme());
+    let currentTheme = getInitialTheme();
+    applyTheme(currentTheme);
 
-    themeToggle?.addEventListener("click", () => {
-      const isDark = root.getAttribute("data-theme") === "dark";
-      setTheme(isDark ? "light" : "dark");
-    });
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        currentTheme = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
+        applyTheme(currentTheme);
+        localStorage.setItem(THEME_KEY, currentTheme);
+      });
+    }
 
     // --- BOOTSTRAP ICON MAP FOR TOOLS ---
     function toolIconClass(toolName) {
@@ -1032,7 +1023,7 @@
       if (t === "js" || t.includes("javascript")) return "bi-filetype-js";
       if (t.includes("php")) return "bi-filetype-php";
 
-      // Tailwind doesn't have a brand icon in Bootstrap Icons -> use "wind"
+      // Tailwind: no official brand icon in bootstrap-icons -> use wind
       if (t.includes("tailwind")) return "bi-wind";
 
       // SQL / DB
@@ -1041,7 +1032,7 @@
       // API
       if (t.includes("api")) return "bi-braces";
 
-      // Generic fallback
+      // Fallbacks
       if (t.includes("server")) return "bi-hdd-network";
       if (t.includes("git")) return "bi-git";
       return "bi-tools";
@@ -1098,7 +1089,7 @@
 
         const thumbHTML = p.image
           ? `<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)} preview" loading="lazy">`
-          : `<div style="font-size:2rem; color:currentColor;"><i class="bi bi-image"></i></div>`;
+          : `<div style="font-size:2rem; color:var(--text-main);"><i class="bi bi-image"></i></div>`;
 
         return `
           <article class="project-card">
