@@ -30,6 +30,16 @@
       --header-h: 64px;
     }
 
+    /* DARK THEME (toggled by html[data-theme="dark"]) */
+    html[data-theme="dark"] {
+      --bg: #060913;
+      --surface: #0b1222;
+      --text-main: #e5e7eb;
+      --text-muted: #a3a9b6;
+      --border-soft: rgba(148, 163, 184, 0.22);
+      --accent: #2dd4bf;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -53,6 +63,10 @@
       overflow-x: hidden;
     }
 
+    html[data-theme="dark"] body {
+      background: radial-gradient(circle at top, rgba(45, 212, 191, 0.12) 0, var(--bg) 60%);
+    }
+
     /* Fixed header */
     header {
       position: fixed;
@@ -64,6 +78,11 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-soft);
       box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    html[data-theme="dark"] header {
+      background: rgba(9, 13, 28, 0.72);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
     .header-inner {
@@ -92,7 +111,7 @@
       width: 30px;
       height: 30px;
       border-radius: 999px;
-      border: 1px solid #0f172a;
+      border: 1px solid rgba(2, 6, 23, 0.65);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -101,6 +120,11 @@
       color: var(--text-main);
       background: radial-gradient(circle at 30% 0, #e5e7eb, #f9fafb);
       flex: 0 0 auto;
+    }
+
+    html[data-theme="dark"] .logo-mark {
+      border-color: rgba(226, 232, 240, 0.28);
+      background: radial-gradient(circle at 30% 0, rgba(226, 232, 240, 0.1), rgba(226, 232, 240, 0.02));
     }
 
     .logo-text {
@@ -113,9 +137,10 @@
 
     nav {
       display: none;
-      gap: 1.5rem;
+      gap: 1.2rem;
       font-size: 0.78rem;
       color: var(--text-muted);
+      align-items: center;
     }
 
     nav a {
@@ -150,6 +175,46 @@
       nav {
         display: flex;
       }
+    }
+
+    /* Theme toggle button in navbar */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(148, 163, 184, 0.22);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(2, 6, 23, 0.35);
+    }
+
+    html[data-theme="dark"] .theme-toggle:hover {
+      border-color: rgba(226, 232, 240, 0.35);
+    }
+
+    .theme-toggle i {
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     h1,
@@ -191,6 +256,12 @@
         transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
         filter 1000ms cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform, filter;
+    }
+
+    html[data-theme="dark"] .section-inner {
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
     }
 
     section.is-visible .section-inner {
@@ -280,8 +351,8 @@
       position: relative;
       overflow: hidden;
       border-radius: 999px;
-      border: 1px solid #020617;
-      background-color: #020617;
+      border: 1px solid rgba(2, 6, 23, 0.9);
+      background-color: rgba(2, 6, 23, 1);
       color: #f9fafb;
       padding: 0.6rem 1.5rem;
       font-size: 0.78rem;
@@ -289,6 +360,11 @@
       letter-spacing: 0.16em;
       cursor: pointer;
       transition: transform 0.2s;
+    }
+
+    html[data-theme="dark"] .btn-primary {
+      border-color: rgba(226, 232, 240, 0.16);
+      background-color: rgba(226, 232, 240, 0.08);
     }
 
     .btn-primary:active {
@@ -319,8 +395,8 @@
 
     .btn-ghost {
       border-radius: 999px;
-      border: 1px solid #9ca3af;
-      background-color: #f9fafb;
+      border: 1px solid rgba(156, 163, 175, 0.95);
+      background-color: rgba(249, 250, 251, 0.9);
       color: var(--text-main);
       padding: 0.6rem 1.5rem;
       font-size: 0.78rem;
@@ -330,9 +406,19 @@
       transition: all 0.2s;
     }
 
+    html[data-theme="dark"] .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.35);
+      background-color: rgba(255, 255, 255, 0.04);
+    }
+
     .btn-ghost:hover {
-      background-color: #e5e7eb;
-      border-color: #6b7280;
+      background-color: rgba(229, 231, 235, 0.8);
+      border-color: rgba(107, 114, 128, 0.85);
+    }
+
+    html[data-theme="dark"] .btn-ghost:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: rgba(226, 232, 240, 0.45);
     }
 
     /* Hero social icons */
@@ -354,15 +440,25 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #020617;
+      color: var(--text-main);
       text-decoration: none;
       transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    html[data-theme="dark"] .social-btn {
+      border-color: rgba(148, 163, 184, 0.22);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .social-btn:hover {
       transform: translateY(-2px);
       border-color: rgba(2, 6, 23, 0.35);
       background: rgba(255, 255, 255, 0.9);
+    }
+
+    html[data-theme="dark"] .social-btn:hover {
+      border-color: rgba(226, 232, 240, 0.38);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .social-btn i {
@@ -406,7 +502,7 @@
     .project-card {
       border-radius: 1.25rem;
       border: 1px solid var(--border-soft);
-      background-color: #ffffff;
+      background-color: var(--surface);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -420,15 +516,25 @@
       border-color: rgba(2, 6, 23, 0.6);
     }
 
+    html[data-theme="dark"] .project-card:hover {
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+      border-color: rgba(226, 232, 240, 0.26);
+    }
+
     .project-thumb {
       position: relative;
       height: 165px;
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+      background: linear-gradient(135deg, rgba(249, 250, 251, 0.9), rgba(229, 231, 235, 0.9));
       border-bottom: 1px solid rgba(209, 213, 219, 0.8);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    html[data-theme="dark"] .project-thumb {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-bottom-color: rgba(148, 163, 184, 0.18);
     }
 
     .project-thumb img {
@@ -468,6 +574,13 @@
       transition: opacity 220ms ease, transform 220ms ease;
     }
 
+    html[data-theme="dark"] .thumb-view {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #f8fafc;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+    }
+
     .project-card:hover .thumb-view {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
@@ -485,30 +598,6 @@
       gap: var(--s3);
     }
 
-    .project-head {
-      display: flex;
-      align-items: center;
-      gap: var(--s2);
-    }
-
-    .project-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      border: 1px solid rgba(2, 6, 23, 0.12);
-      background: rgba(249, 250, 251, 0.9);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-    }
-
-    .project-icon i {
-      font-size: 1.05rem;
-      line-height: 1;
-      color: #0f172a;
-    }
-
     .project-title {
       font-size: 0.98rem;
       font-weight: 650;
@@ -520,20 +609,6 @@
       font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.5;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      font-size: 0.7rem;
-    }
-
-    .tag {
-      border-radius: 999px;
-      background-color: #e5e7eb;
-      padding: 0.14rem 0.6rem;
-      color: #111827;
     }
 
     /* Used tools row */
@@ -552,9 +627,14 @@
       padding: 0.16rem 0.6rem;
       border: 1px solid rgba(2, 6, 23, 0.12);
       background: rgba(249, 250, 251, 0.9);
-      color: #0f172a;
+      color: var(--text-main);
       font-size: 0.7rem;
       white-space: nowrap;
+    }
+
+    html[data-theme="dark"] .lang-pill {
+      border-color: rgba(148, 163, 184, 0.22);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .lang-pill i {
@@ -567,11 +647,15 @@
       border-radius: 1.25rem;
       border: 1px solid var(--border-soft);
       padding: var(--s5);
-      background-color: #f9fafb;
+      background-color: rgba(249, 250, 251, 0.92);
       font-size: 0.88rem;
       color: var(--text-muted);
       display: grid;
       gap: var(--s3);
+    }
+
+    html[data-theme="dark"] .single-card {
+      background-color: rgba(255, 255, 255, 0.04);
     }
 
     .single-card h3 {
@@ -616,7 +700,7 @@
     .contact-toggle-btn {
       border-radius: 999px;
       border: 1px solid var(--border-soft);
-      background-color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.85);
       color: var(--text-main);
       padding: 0.35rem 0.9rem;
       font-size: 0.72rem;
@@ -626,22 +710,36 @@
       transition: all 0.2s ease;
     }
 
+    html[data-theme="dark"] .contact-toggle-btn {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
     .contact-toggle-btn.active {
-      background-color: #020617;
+      background-color: rgba(2, 6, 23, 1);
       color: #f9fafb;
-      border-color: #020617;
+      border-color: rgba(2, 6, 23, 1);
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+    }
+
+    html[data-theme="dark"] .contact-toggle-btn.active {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
 
     .contact-card {
       border-radius: 1.1rem;
       border: 1px solid var(--border-soft);
-      background-color: #f9fafb;
+      background-color: rgba(249, 250, 251, 0.92);
       padding: var(--s4);
       color: var(--text-muted);
       display: grid;
       gap: var(--s2);
       transition: opacity 200ms ease;
+    }
+
+    html[data-theme="dark"] .contact-card {
+      background-color: rgba(255, 255, 255, 0.04);
     }
 
     .contact-card h3 {
@@ -691,8 +789,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: #020617;
-      border-top: 1px solid #111827;
+      background-color: rgba(2, 6, 23, 0.98);
+      border-top: 1px solid rgba(17, 24, 39, 0.9);
       color: #e5e7eb;
       display: flex;
       justify-content: space-around;
@@ -700,6 +798,11 @@
       padding: 0.35rem 0.6rem;
       font-size: 0.7rem;
       z-index: 20;
+    }
+
+    html[data-theme="dark"] .bottom-nav {
+      background-color: rgba(0, 0, 0, 0.65);
+      border-top-color: rgba(148, 163, 184, 0.18);
     }
 
     .bottom-nav button {
@@ -741,6 +844,12 @@
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+
+        <!-- Dark mode toggle -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"
+          title="Toggle theme">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
       </nav>
     </div>
   </header>
@@ -790,7 +899,6 @@
           <div class="section-subtitle">Selected development work</div>
         </div>
 
-        <!-- JS renders cards here -->
         <div class="dev-grid" id="projects-grid"></div>
       </div>
     </section>
@@ -878,11 +986,47 @@
       btn.addEventListener("click", sound);
     });
 
+    // --- THEME TOGGLE (persist in localStorage) ---
+    const themeToggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === "dark") root.setAttribute("data-theme", "dark");
+      else root.removeAttribute("data-theme");
+
+      // Update icon
+      const icon = themeToggle?.querySelector("i");
+      if (icon) {
+        icon.className = (theme === "dark") ? "bi bi-sun" : "bi bi-moon-stars";
+      }
+
+      // Save
+      try { localStorage.setItem("theme", theme); } catch (e) { }
+    }
+
+    function getPreferredTheme() {
+      try {
+        const saved = localStorage.getItem("theme");
+        if (saved === "dark" || saved === "light") return saved;
+      } catch (e) { }
+      // System preference fallback
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    // Init theme
+    setTheme(getPreferredTheme());
+
+    themeToggle?.addEventListener("click", () => {
+      const isDark = root.getAttribute("data-theme") === "dark";
+      setTheme(isDark ? "light" : "dark");
+    });
+
     // --- BOOTSTRAP ICON MAP FOR TOOLS ---
     function toolIconClass(toolName) {
       const t = String(toolName || "").trim().toLowerCase();
 
-      // Most common dev tools
       if (t.includes("html")) return "bi-filetype-html";
       if (t.includes("css")) return "bi-filetype-css";
       if (t === "js" || t.includes("javascript")) return "bi-filetype-js";
@@ -909,7 +1053,6 @@
         title: "Food Fusion",
         desc: "Recipe collection where users share their recipes",
         image: "images/foodfusion.png",
-        // tags: ["Responsive", "Clean UI"],
         languages: ["PHP", "Tailwind", "MySQL"],
         link: "https://foodfusion.infinityfreeapp.com/indexx.php",
       },
@@ -917,7 +1060,6 @@
         title: "Smart Quiz",
         desc: "AI Quiz Generator",
         image: "images/smartquiz.png",
-        // tags: ["Cards", "Layout"],
         languages: ["PHP", "API", "JavaScript"],
         link: "https://smart-quiz-v2.pages.dev/",
       },
@@ -925,7 +1067,6 @@
         title: "Bean Boutique",
         desc: "An e-commerce website",
         image: "images/bean_boutique.png",
-        // tags: ["Components", "UI/UX"],
         languages: ["HTML", "CSS", "PHP"],
         link: "https://thurainhtetko123.github.io/Bean-Boutique/Home.html",
       },
@@ -945,8 +1086,6 @@
       if (!grid) return;
 
       grid.innerHTML = projects.map((p) => {
-        const tagsHTML = (p.tags || []).map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("");
-
         const langsHTML = (p.languages || []).map(name => {
           const iconClass = toolIconClass(name);
           return `
@@ -959,7 +1098,7 @@
 
         const thumbHTML = p.image
           ? `<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)} preview" loading="lazy">`
-          : `<div style="font-size:2rem; color:#0f172a;"><i class="bi ${escapeHTML(p.icon)}"></i></div>`;
+          : `<div style="font-size:2rem; color:currentColor;"><i class="bi bi-image"></i></div>`;
 
         return `
           <article class="project-card">
@@ -969,10 +1108,7 @@
             </div>
 
             <div class="project-body">
-              <div class="project-head">
-                <div class="project-title">${escapeHTML(p.title)}</div>
-              </div>
-
+              <div class="project-title">${escapeHTML(p.title)}</div>
               <div class="project-desc">${escapeHTML(p.desc)}</div>
               <div class="langs">${langsHTML}</div>
             </div>
